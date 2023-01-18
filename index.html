@@ -19,6 +19,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+      <script src="https://kit.fontawesome.com/b99ab0f749.js" crossorigin="anonymous"></script>
+
     <title>Work Day Scheduler</title>
   </head>
 
@@ -28,12 +30,37 @@
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
-    <div class="container">
+    <div class="container time-block">
       <!-- Timeblocks go here -->
+      <div class="row  time-block">
+        <div class="col-2 col-lg-1 hour" col-sm-2>9AM</div>
+        <textarea class="col-8 col-lg-10 past">my text1</textarea>
+        <button class="col-2 col-lg-1 saveBtn">
+            <i class="fas fa-save "></i>
+        </button>
+      </div>
+      <div class="row time-block ">
+        <div class="col-2 col-lg-1 hour" col-sm-2>10AM</div>
+        <textarea class="col-8 col-lg-10 present ">my text2</textarea>
+        <button class="col-2  col-lg-1 saveBtn">
+          <i class="fas fa-save "></i>
+        </button>
+      </div>
+      <div class="row time-block">
+        <div class="col-2 col-lg-1 hour" col-sm-2>11AM</div>
+        <textarea class="col-8 col-lg-10 future">my tex3</textarea>
+        <button class="col-2 col-lg-1 saveBtn">
+          <i class="fas fa-save "></i>
+        </button>
+      </div>
     </div>
+<!-- end of time block -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>
+<!-- <button class="saveBtn">
+  <i class="fas fa-save "></i>
+</button> -->
