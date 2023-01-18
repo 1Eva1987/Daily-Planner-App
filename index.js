@@ -11,7 +11,8 @@ for (var i = 9; i < 18; i++) {
   // columns
   var colTime = $("<div>");
   colTime.addClass("col-2 col-lg-1 hour");
-  colTime.text(i);
+  //   colTime.text(i);
+  showHour(i);
   var colText = $("<textarea>");
   colText.addClass("col-8 col-lg-10");
   var colBtn = $("<button>");
@@ -25,6 +26,18 @@ for (var i = 9; i < 18; i++) {
   rowEl.append(colBtn);
   // add row to timeBlocks
   timeBlocks.append(rowEl);
+}
+
+function showHour(hour) {
+  if (hour > 12) {
+    var evening = hour - 12;
+    console.log(evening);
+    colTime.text(evening + "PM");
+  } else if (hour < 12) {
+    colTime.text(hour + "AM");
+  } else {
+    colTime.text(hour + "PM");
+  }
 }
 
 // lay out
