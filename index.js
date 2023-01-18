@@ -11,10 +11,10 @@ for (var i = 9; i < 18; i++) {
   // columns
   var colTime = $("<div>");
   colTime.addClass("col-2 col-lg-1 hour");
-  //   colTime.text(i);
   showHour(i);
   var colText = $("<textarea>");
   colText.addClass("col-8 col-lg-10");
+  applyCollor(i);
   var colBtn = $("<button>");
   colBtn.addClass("col-2 col-lg-1 saveBtn");
   var iEl = $("<i>");
@@ -28,10 +28,10 @@ for (var i = 9; i < 18; i++) {
   timeBlocks.append(rowEl);
 }
 
+// Function to show time am/pm instead of number
 function showHour(hour) {
   if (hour > 12) {
     var evening = hour - 12;
-    console.log(evening);
     colTime.text(evening + "PM");
   } else if (hour < 12) {
     colTime.text(hour + "AM");
@@ -40,13 +40,23 @@ function showHour(hour) {
   }
 }
 
+// Function to apply collor based on time
+function applyCollor(number) {
+  var currentTime = moment().hour();
+  if (number < currentTime) {
+    colText.addClass("past");
+  } else if (number > currentTime) {
+    colText.addClass("future");
+  } else {
+    colText.addClass("present");
+  }
+}
+
 // lay out
-/* <div class="row  time-block">
-  <div class="col-2 col-lg-1 hour" col-sm-2>
-    9AM
-  </div>
-  <textarea class="col-8 col-lg-10 past">my text1</textarea>
-  <button class="col-2 col-lg-1 saveBtn">
-    <i class="fas fa-save "></i>
-  </button>
-</div>; */
+/*  <div class="row  time-block">
+        <div class="col-2 col-lg-1 hour" col-sm-2>9AM</div>
+        <textarea class="col-8 col-lg-10 past">my text1</textarea>
+        <button class="col-2 col-lg-1 saveBtn">
+            <i class="fas fa-save "></i>
+        </button>
+    </div>; */
