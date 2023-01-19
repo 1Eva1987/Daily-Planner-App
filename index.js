@@ -46,7 +46,6 @@ timeBlocks.on("click", ".saveBtn", function (e) {
 // Click event if user clicks icon inside the save button
 $(".saveBtn").on("click", ".fas", function (e) {
   e.stopPropagation();
-
   e.preventDefault();
   var buttonNumber = $(e.target).parent().attr("data-number");
   var textValue = $(e.target).parent().parent().children().eq(1).val();
