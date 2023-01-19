@@ -1,7 +1,9 @@
 var currentDateEl = $("#currentDay");
 var timeBlocks = $(".container");
+
 // Display the current day at the top of the calender
 currentDateEl.text(moment().format("dddd") + ", " + moment().format("MMMM Do"));
+
 // Create time blocks dynamically
 for (var i = 9; i < 18; i++) {
   // row element
@@ -14,8 +16,7 @@ for (var i = 9; i < 18; i++) {
   var colText = $("<textarea>");
   applyCollor(i);
   colText.addClass("col-8 col-lg-10 text-area");
-  colText.attr("data-index", i);
-  // colText.text("");
+  colText.attr("data-index", i).attr("style", "color: black");
   var colBtn = $("<button>");
   colBtn.addClass("col-2 col-lg-1 saveBtn");
   colBtn.attr("data-number", i);
@@ -28,17 +29,24 @@ for (var i = 9; i < 18; i++) {
   rowEl.append(colBtn);
   // add row to timeBlocks
   timeBlocks.append(rowEl);
-  // getting from local storage
+  // getting saved entries from local storage
   colText.text(localStorage.getItem(i));
 }
-// sava button click event
+
+// Save button click event / saving entry in a local storage
 timeBlocks.on("click", ".saveBtn", function (e) {
   e.preventDefault();
   var buttonNumber = $(e.target).attr("data-number");
-  console.log(buttonNumber);
   var textValue = $(e.target).parent().children().eq(1).val();
-  console.log(textValue);
   // setting local storage
+  localStorage.setItem(buttonNumber, textValue);
+});
+
+// Click event if user clicks icon inside the save button
+$(".saveBtn").on("click", ".fas", function (e) {
+  e.preventDefault();
+  var buttonNumber = $(e.target).parent().attr("data-number");
+  var textValue = $(e.target).parent().parent().children().eq(1).val();
   localStorage.setItem(buttonNumber, textValue);
 });
 
