@@ -28,16 +28,17 @@ for (var i = 9; i < 18; i++) {
   rowEl.append(colBtn);
   // add row to timeBlocks
   timeBlocks.append(rowEl);
+  // getting from local storage
   colText.text(localStorage.getItem(i));
 }
-
+// sava button click event
 timeBlocks.on("click", ".saveBtn", function (e) {
   e.preventDefault();
-  // console.log($(e.target).attr("data-number"));
   var buttonNumber = $(e.target).attr("data-number");
   console.log(buttonNumber);
   var textValue = $(e.target).parent().children().eq(1).val();
   console.log(textValue);
+  // setting local storage
   localStorage.setItem(buttonNumber, textValue);
 });
 
