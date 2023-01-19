@@ -40,14 +40,18 @@ timeBlocks.on("click", ".saveBtn", function (e) {
   var textValue = $(e.target).parent().children().eq(1).val();
   // setting local storage
   localStorage.setItem(buttonNumber, textValue);
+  notify();
 });
 
 // Click event if user clicks icon inside the save button
 $(".saveBtn").on("click", ".fas", function (e) {
+  e.stopPropagation();
+
   e.preventDefault();
   var buttonNumber = $(e.target).parent().attr("data-number");
   var textValue = $(e.target).parent().parent().children().eq(1).val();
   localStorage.setItem(buttonNumber, textValue);
+  notify();
 });
 
 // Function to show time am/pm instead of number
@@ -72,4 +76,14 @@ function applyCollor(number) {
   } else {
     colText.addClass("present");
   }
+}
+
+// function to notify the user for 1s that his entry was saved
+function notify() {
+  notificationEl = $("<p>");
+  notificationEl.text("Saved!");
+  timeBlocks.prepend(notificationEl);
+  setTimeout(function (e) {
+    notificationEl.hide();
+  }, 1000);
 }
