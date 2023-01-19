@@ -2,7 +2,6 @@ var currentDateEl = $("#currentDay");
 var timeBlocks = $(".container");
 // Display the current day at the top of the calender
 currentDateEl.text(moment().format("dddd") + ", " + moment().format("MMMM Do"));
-
 // Create time blocks dynamically
 for (var i = 9; i < 18; i++) {
   // row element
@@ -13,12 +12,15 @@ for (var i = 9; i < 18; i++) {
   colTime.addClass("col-2 col-lg-1 hour");
   showHour(i);
   var colText = $("<textarea>");
-  colText.addClass("col-8 col-lg-10");
   applyCollor(i);
+  colText.addClass("col-8 col-lg-10 text-area");
+  colText.attr("data-index", i);
+  // colText.text("");
   var colBtn = $("<button>");
   colBtn.addClass("col-2 col-lg-1 saveBtn");
+  colBtn.attr("data-number", i);
   var iEl = $("<i>");
-  iEl.addClass("fas fa-save");
+  iEl.addClass("fas fa-save ");
   colBtn.append(iEl);
   // add columns to row
   rowEl.append(colTime);
@@ -26,7 +28,18 @@ for (var i = 9; i < 18; i++) {
   rowEl.append(colBtn);
   // add row to timeBlocks
   timeBlocks.append(rowEl);
+  colText.text(localStorage.getItem(i));
 }
+
+timeBlocks.on("click", ".saveBtn", function (e) {
+  e.preventDefault();
+  // console.log($(e.target).attr("data-number"));
+  var buttonNumber = $(e.target).attr("data-number");
+  console.log(buttonNumber);
+  var textValue = $(e.target).parent().children().eq(1).val();
+  console.log(textValue);
+  localStorage.setItem(buttonNumber, textValue);
+});
 
 // Function to show time am/pm instead of number
 function showHour(hour) {
@@ -51,12 +64,3 @@ function applyCollor(number) {
     colText.addClass("present");
   }
 }
-
-// lay out
-/*  <div class="row  time-block">
-        <div class="col-2 col-lg-1 hour" col-sm-2>9AM</div>
-        <textarea class="col-8 col-lg-10 past">my text1</textarea>
-        <button class="col-2 col-lg-1 saveBtn">
-            <i class="fas fa-save "></i>
-        </button>
-    </div>; */
